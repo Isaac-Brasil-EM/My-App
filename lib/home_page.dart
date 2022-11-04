@@ -16,6 +16,35 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      drawer: Drawer(
+        child: Column(children: [
+          UserAccountsDrawerHeader(
+            currentAccountPicture: ClipRRect(
+              borderRadius: BorderRadius.circular(40),
+              child: Image.network(
+                  'https://avatars.githubusercontent.com/u/114941431?v=4'),
+            ),
+            accountName: Text('Isaac Brasil'),
+            accountEmail: Text('isaac@flutter.com.br'),
+          ),
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text('Inicio'),
+            subtitle: Text("Tela de inicio"),
+            onTap: () {
+              print("home");
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text('Sair'),
+            subtitle: Text("Sair do app"),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed('/');
+            },
+          )
+        ]),
+      ),
       appBar: AppBar(
         title: Text("Home Page"),
         actions: [
@@ -25,8 +54,8 @@ class HomePageState extends State<HomePage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        child: ListView(
-          
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Contador: $counter'),
             Container(
@@ -72,8 +101,6 @@ class HomePageState extends State<HomePage> {
 }
 
 class CustomSwitch extends StatelessWidget {
-  const CustomSwitch({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Switch(
